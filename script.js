@@ -1,9 +1,11 @@
 const input = document.getElementById("searchInput");
 
 input.addEventListener("keypress", function(e){
+
     if(e.key === "Enter"){
         searchMusic();
     }
+
 });
 
 window.onload = function(){
@@ -18,6 +20,7 @@ document.addEventListener("click", function(e){
 
         searchMusic();
     }
+
 });
 
 async function loadRecommendation(){
@@ -67,21 +70,26 @@ async function loadRecommendation(){
         `;
     }
 
-    document.getElementById("recommendList").innerHTML =
-    output;
+    document.getElementById(
+        "recommendList"
+    ).innerHTML = output;
 }
 
 async function searchMusic(){
 
-    const keyword = input.value;
+    const keyword = input.value.trim();
 
     if(keyword === ""){
-        alert("Please enter a song or artist.");
         return;
     }
 
-    document.getElementById("loading").style.display =
-    "block";
+    document.getElementById(
+        "loading"
+    ).style.display = "block";
+
+    document.getElementById(
+        "homeSection"
+    ).style.display = "none";
 
     const response = await fetch(
         `https://itunes.apple.com/search?term=${keyword}&entity=song&limit=20`
@@ -89,18 +97,21 @@ async function searchMusic(){
 
     const data = await response.json();
 
-    document.getElementById("loading").style.display =
-    "none";
+    document.getElementById(
+        "loading"
+    ).style.display = "none";
 
-    document.getElementById("resultTitle").style.display =
-    "block";
+    document.getElementById(
+        "resultTitle"
+    ).style.display = "block";
 
     let output = "";
 
     data.results.forEach(song => {
 
         const year =
-        new Date(song.releaseDate).getFullYear();
+        new Date(song.releaseDate)
+        .getFullYear();
 
         output += `
         <div class="card">
@@ -131,10 +142,28 @@ async function searchMusic(){
     if(data.results.length === 0){
 
         output = `
-        <h3>Song not found.</h3>
+        <h2>Song not found.</h2>
         `;
     }
 
-    document.getElementById("musicList").innerHTML =
-    output;
+    document.getElementById(
+        "musicList"
+    ).innerHTML = output;
+}
+
+function goHome(){
+
+    document.getElementById(
+        "homeSection"
+    ).style.display = "block";
+
+    document.getElementById(
+        "musicList"
+    ).innerHTML = "";
+
+    document.getElementById(
+        "resultTitle"
+    ).style.display = "none";
+
+    input.value = "";
 }
