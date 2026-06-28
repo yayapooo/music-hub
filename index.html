@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="id">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Finder</title>
+    <title>MusicHub</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -11,11 +11,17 @@
 
 <div class="container">
 
-    <h1>🎵 Your Music Starts Here</h1>
+    <h1>🎧 MusicHub</h1>
+
+    <p class="subtitle">
+        Discover your favorite songs and artists instantly.
+    </p>
 
     <div class="search-box">
-        <input type="text" id="searchInput"
-        placeholder="Cari lagu atau artis...">
+        <input
+            type="text"
+            id="searchInput"
+            placeholder="Search songs or artists...">
 
         <button onclick="searchMusic()">
             Search
@@ -26,9 +32,40 @@
         Loading...
     </div>
 
+    <h2 class="section-title">
+        🔥 Today's Recommendations
+    </h2>
+
+    <div id="recommendList" class="music-list"></div>
+
+    <h2 class="section-title">
+        🎤 Popular Artists
+    </h2>
+
+    <div class="artist-list">
+
+        <div class="artist-card">Taylor Swift</div>
+        <div class="artist-card">Ed Sheeran</div>
+        <div class="artist-card">Coldplay</div>
+        <div class="artist-card">Bruno Mars</div>
+        <div class="artist-card">Adele</div>
+        <div class="artist-card">Ariana Grande</div>
+
+    </div>
+
+    <h2 id="resultTitle"
+        class="section-title"
+        style="display:none;">
+        🎵 Search Results
+    </h2>
+
     <div id="musicList" class="music-list"></div>
 
 </div>
+
+<footer>
+    MusicHub © 2026 | Powered by iTunes API
+</footer>
 
 <script src="script.js"></script>
 
